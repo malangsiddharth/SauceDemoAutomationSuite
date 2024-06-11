@@ -33,15 +33,26 @@ def selectThreeRandomItems(context):
     for i in range(3):
        if(product_listToSelect[i]>4):
             context.base_page = BasePage(context.driver)
+            time.sleep(3)
             context.base_page.scrollDown()
             time.sleep(3)
             context.product_page.selectDynamicElement(product_listToSelect[i])
             time.sleep(3)
+            context.base_page = BasePage(context.driver)
+            time.sleep(3)
             context.base_page.scrollUp()
+            time.sleep(3)
        else:
            context.base_page = BasePage(context.driver)
+           time.sleep(3)
            context.base_page.scrollUp()
+           time.sleep(3)
+           context.product_page = ProductPage(context.driver)
            context.product_page.selectDynamicElement(product_listToSelect[i])
+           context.base_page = BasePage(context.driver)
+           time.sleep(3)
+           context.base_page.scrollUp()
+           time.sleep(3)
     assert "3".__eq__(context.product_page.getelement())
     context.product_page.clickOnShoppingIcon()
 
